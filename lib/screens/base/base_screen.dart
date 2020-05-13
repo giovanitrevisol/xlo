@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:xlo/blocs/drawer_bloc.dart';
 import 'package:xlo/screens/home/home_screen.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -8,10 +12,28 @@ class BaseScreen extends StatefulWidget {
 
 class _BaseScreenState extends State<BaseScreen> {
   final PageController _pageController = PageController();
+
+  DrawerBloc _drawerBloc;
+  StreamSubscription _drawerSubscription;
+
+  //em uma stateFull para resgater o bloc usando  usamos
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final DrawerBloc drawerBloc = Provider.of<DrawerBloc>(context);
+    if (drawerBloc != _drawerBloc) {
+      _drawerBloc = drawerBloc;
+
+      _drawerSubscription?.cancel();
+      _drawerSubscription = _drawerBloc.outPage.listen((page) {
+        _pageController.jumpToPage(page);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    //_pageController.jumpToPage(2);
-
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -25,5 +47,11 @@ class _BaseScreenState extends State<BaseScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _drawerSubscription.cancel();
   }
 }

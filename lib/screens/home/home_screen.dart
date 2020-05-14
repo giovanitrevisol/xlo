@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xlo/blocs/home_bloc.dart';
+import 'package:xlo/screens/home/widgets/top_bar.dart';
 
 import '../../common/custom_drawer/custom_drawer.dart';
 import 'widgets/search_dialog.dart';
@@ -26,6 +27,7 @@ class _HomeScreemState extends State<HomeScreem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: StreamBuilder<String>(
             stream: _homeBLoc.outSearch,
             initialData: '',
@@ -67,6 +69,11 @@ class _HomeScreemState extends State<HomeScreem> {
         ],
       ),
       drawer: CustomDrawer(),
+      body: Column(
+        children: <Widget>[
+          TopBar(),
+        ],
+      ),
     );
   }
 

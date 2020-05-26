@@ -4,6 +4,7 @@ import 'package:xlo/blocs/login/login_bloc.dart';
 import 'package:xlo/screens/login/widgets/facebook_button.dart';
 import 'package:xlo/screens/login/widgets/login_button.dart';
 import 'package:xlo/screens/login/widgets/or_divider.dart';
+import 'package:xlo/screens/signup/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -126,7 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        //
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ));
                       },
                       child: Text(
                         'Cadastre-se',

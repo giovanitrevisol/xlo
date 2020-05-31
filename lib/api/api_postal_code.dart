@@ -27,7 +27,7 @@ Future<ApiResponse> getAddressFromApi(String postalCode) async {
     return ApiResponse.success(result: adress);
   } on DioError catch (e) {
     return ApiResponse.error(
-      error: ApiError(-1, 'Falha ao contactar VIACEP'),
+      error: ApiError(-1, 'Falha ao contactar VIACEP - $e'),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xlo/blocs/drawer_bloc.dart';
 import 'package:xlo/create/create_screen.dart';
+import 'package:xlo/screens/account/account_screen.dart';
 import 'package:xlo/screens/home/home_screen.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -46,7 +47,7 @@ class _BaseScreenState extends State<BaseScreen> {
           CreateScreen(),
           Container(color: Colors.green),
           Container(color: Colors.blue),
-          Container(color: Colors.red)
+          AccountScreen(),
         ],
       ),
     );
